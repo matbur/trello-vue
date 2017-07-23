@@ -1,20 +1,27 @@
 <template>
   <div id="cat">
+    <h3>{{name}}</h3>
     <input type="text" v-model="inp_data" v-text="inp_data">
     <button @click="addTask">add task</button>
 
-    <ul>
-      <li v-for="task in tasks">{{task}}</li>
-    </ul>
+    <task-list :tasks="t"></task-list>
   </div>
 </template>
 
 <script>
+  import TaskList from './TaskList.vue'
+
   export default {
-    props: ['cat', 'tasks'],
+    props: ['cat', 'tasks', 'name'],
+    components: {TaskList},
     data() {
       return {
         inp_data: 'dupa',
+      }
+    },
+    computed: {
+      t() {
+        return this.tasks.filter(task => task.category === this.cat)
       }
     },
     methods: {

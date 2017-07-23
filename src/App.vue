@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <Category :cat="0" :tasks="tasks" @add="addTask"></Category>
+    <Category :cat="0" name="backlog" :tasks="tasks" @add="addTask"></Category>
+    <Category :cat="1" name="ongoing" :tasks="tasks" @add="addTask"></Category>
   </div>
 </template>
 
@@ -10,7 +11,9 @@
   let store = {
     tasks: [
       {id: 0, text: 'task0', category: 0},
-      {id: 1, text: 'task1', category: 0}
+      {id: 1, text: 'task1', category: 0},
+      {id: 2, text: 'task2', category: 1},
+      {id: 3, text: 'task3', category: 2},
     ],
   }
 
@@ -21,7 +24,6 @@
       return store
     },
     methods: {
-
       addTask(category, text) {
         console.log('text from app', category, text)
 

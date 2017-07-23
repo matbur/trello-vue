@@ -1,12 +1,17 @@
 <template>
   <ul>
-    <li v-for="task in props.tasks">{{task}}</li>
+    <task v-for="task in tasks" :key="task.id">
+      {{task}}
+    </task>
   </ul>
 </template>
 
 <script>
+  import Task from './Task.vue'
+
   export default {
-    props: ['tasks']
+    props: ['tasks'],
+    components: {Task},
   }
 </script>
 
