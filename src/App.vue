@@ -4,7 +4,7 @@
               :key="cat.id"
               :cat="cat.id"
               :name="cat.name"
-              :tasks="tasks"
+              :tasks="getTasks(cat.id)"
               @add="addTask">
     </category>
 
@@ -39,6 +39,9 @@
         }
         const newCat = {id: this.categories.length, name: this.newCat}
         this.categories.push(newCat)
+      },
+      getTasks(cat) {
+        return this.tasks.filter(task => task.category === cat)
       }
     }
   }

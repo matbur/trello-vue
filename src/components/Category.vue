@@ -2,11 +2,11 @@
   <div id="cat">
     <h3>{{name}}</h3>
 
-    <ul>
-      <task v-for="task in t"
+    <div>
+      <task v-for="task in tasks"
             :key="task.id"
             v-text="task.text"></task>
-    </ul>
+    </div>
 
     <input type="text" v-model="inp_data">
     <button @click="addTask">Add a card...</button>
@@ -24,16 +24,11 @@
         inp_data: 'dupa',
       }
     },
-    computed: {
-      t() {
-        return this.tasks.filter(task => task.category === this.cat)
-      }
-    },
     methods: {
       addTask() {
         this.$emit('add', this.cat, this.inp_data)
         this.inp_data = ''
-      }
+      },
     }
   }
 </script>
@@ -42,6 +37,7 @@
   #cat {
     background-color: #E2E4E6;
     width: 300px;
+    border-radius: 3px;
   }
 
   ul {

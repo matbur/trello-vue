@@ -1,7 +1,7 @@
 <template>
-  <li>
+  <div>
     <slot></slot>
-  </li>
+  </div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@
 </script>
 
 <style>
-  li {
+  div {
     background-color: #FFFFFF;
   }
 </style>
