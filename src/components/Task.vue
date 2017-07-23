@@ -10,6 +10,6 @@
 
 <style>
   li {
-    background-color: greenyellow;
+    background-color: #FFFFFF;
   }
 </style>

@@ -1,10 +1,11 @@
 <template>
   <div id="cat">
     <h3>{{name}}</h3>
-    <input type="text" v-model="inp_data" v-text="inp_data">
-    <button @click="addTask">add task</button>
 
     <task-list :tasks="t"></task-list>
+
+    <input type="text" v-model="inp_data">
+    <button @click="addTask">Add a card...</button>
   </div>
 </template>
 
@@ -35,7 +36,7 @@
 
 <style>
   #cat {
-    background-color: yellow;
+    background-color: #E2E4E6;
     width: 300px;
   }
 </style>
