@@ -1,5 +1,5 @@
 <template>
-  <div class="task">
+  <div class="card">
     <slot></slot>
   </div>
 </template>
@@ -9,7 +9,7 @@
 </script>
 
 <style>
-  .task {
+  .card {
     background-color: #FFFFFF;
     margin-bottom: 10px;
   }

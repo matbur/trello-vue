@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <category v-for="cat in categories"
+    <list v-for="cat in categories"
               :key="cat.id"
               :cat="cat"
               :tasks="getTasks(cat)"
               @addTask="addTask"
               @changeHeader="changeHeader"
-    ></category>
+    ></list>
 
 
     <div>
@@ -24,12 +24,12 @@
 </template>
 
 <script>
-  import Category from './components/Category.vue'
+  import List from './components/List.vue'
   import store from './data'
 
   export default {
     name: 'app',
-    components: {Category},
+    components: {List},
     data() {
       return Object.assign({}, store, {
         newCat: '',

@@ -1,19 +1,20 @@
 <template>
-  <div id="cat">
+  <div class="list">
     <div>
       <h3 v-if="visibleHeader"
           v-text="name"
-          @click="changeHeader"></h3>
+          @click="changeHeader"
+      ></h3>
       <input type="text"
              v-if="!visibleHeader"
              v-model="name"
              @blur="changeHeader">
     </div>
 
-    <div class="tasks">
-      <task v-for="task in tasks"
+    <div class="cards">
+      <card v-for="task in tasks"
             :key="task.id"
-            v-text="task.text"></task>
+            v-text="task.text"></card>
 
       <div v-if="visibleInput">
         <input type="text"
@@ -30,11 +31,11 @@
 </template>
 
 <script>
-  import Task from './Task.vue'
+  import Card from './Card.vue'
 
   export default {
     props: ['cat', 'tasks'],
-    components: {Task},
+    components: {Card},
     data() {
       return {
         name: this.cat.name,
@@ -63,13 +64,13 @@
 </script>
 
 <style>
-  #cat {
+  .list {
     background-color: #E2E4E6;
     width: 300px;
     border-radius: 3px;
   }
 
-  .tasks {
+  .cards {
     background-color: greenyellow; /*TODO: to remove*/
     width: 90%;
     margin: auto;
