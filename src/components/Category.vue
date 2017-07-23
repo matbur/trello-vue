@@ -1,15 +1,31 @@
 <template>
   <div id="cat">
-    <h3>{{name}}</h3>
-
     <div>
+      <h3 v-if="visibleHeader"
+          v-text="name"
+          @click="changeHeader"></h3>
+      <input type="text"
+             v-if="!visibleHeader"
+             v-model="name"
+             @blur="changeHeader">
+    </div>
+
+    <div class="tasks">
       <task v-for="task in tasks"
             :key="task.id"
             v-text="task.text"></task>
+
+      <div v-if="visibleInput">
+        <input type="text"
+               v-model="inpData"
+               @blur="changeInput">
+        <button @click="addTask">Add</button>
+        <button @click="inpData = ''">x</button>
+      </div>
     </div>
 
-    <input type="text" v-model="inp_data">
-    <button @click="addTask">Add a card...</button>
+
+    <a href="#" @click="changeInput">Add a card...</a>
   </div>
 </template>
 
@@ -17,18 +33,31 @@
   import Task from './Task.vue'
 
   export default {
-    props: ['cat', 'tasks', 'name'],
+    props: ['cat', 'tasks'],
     components: {Task},
     data() {
       return {
-        inp_data: 'dupa',
+        name: this.cat.name,
+        id: this.cat.id,
+        inpData: '',
+        visibleHeader: true,
+        visibleInput: false,
       }
     },
     methods: {
       addTask() {
-        this.$emit('add', this.cat, this.inp_data)
-        this.inp_data = ''
+        this.$emit('addTask', this.id, this.inpData)
+        this.inpData = ''
       },
+      changeHeader() {
+        if (!this.visibleHeader) {
+          this.$emit('changeHeader', this.id, this.name)
+        }
+        this.visibleHeader = !this.visibleHeader
+      },
+      changeInput() {
+        this.visibleInput = !this.visibleInput
+      }
     }
   }
 </script>
@@ -40,7 +69,9 @@
     border-radius: 3px;
   }
 
-  ul {
-    list-style: none;
+  .tasks {
+    background-color: greenyellow; /*TODO: to remove*/
+    width: 90%;
+    margin: auto;
   }
 </style>

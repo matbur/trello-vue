@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="task">
     <slot></slot>
   </div>
 </template>
@@ -9,7 +9,8 @@
 </script>
 
 <style>
-  div {
+  .task {
     background-color: #FFFFFF;
+    margin-bottom: 10px;
   }
 </style>

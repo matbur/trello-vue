@@ -2,14 +2,24 @@
   <div id="app">
     <category v-for="cat in categories"
               :key="cat.id"
-              :cat="cat.id"
-              :name="cat.name"
-              :tasks="getTasks(cat.id)"
-              @add="addTask">
-    </category>
+              :cat="cat"
+              :tasks="getTasks(cat)"
+              @addTask="addTask"
+              @changeHeader="changeHeader"
+    ></category>
 
-    <input type="text" v-model="newCat">
-    <button @click="addCategory">Add a list...</button>
+
+    <div>
+      <a href="#" v-if="!visibleInput" @click="changeInput">Add a list...</a>
+      <div v-if="visibleInput">
+        <input type="text"
+               v-model="newCat"
+               @blur="changeInput">
+        <button @click="addCategory">Save</button>
+        <button @click="newCat = ''">x</button>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -21,7 +31,10 @@
     name: 'app',
     components: {Category},
     data() {
-      return Object.assign({newCat: 'new category'}, store)
+      return Object.assign({}, store, {
+        newCat: '',
+        visibleInput: false,
+      })
     },
     methods: {
       addTask(category, text) {
@@ -39,10 +52,17 @@
         }
         const newCat = {id: this.categories.length, name: this.newCat}
         this.categories.push(newCat)
+        this.newCat = ''
       },
       getTasks(cat) {
-        return this.tasks.filter(task => task.category === cat)
-      }
+        return this.tasks.filter(task => task.category === cat.id)
+      },
+      changeInput(){
+        this.visibleInput = !this.visibleInput
+      },
+      changeHeader(category, newName) {
+        this.categories[category].name = newName
+      },
     }
   }
 </script>
