@@ -2,7 +2,11 @@
   <div id="cat">
     <h3>{{name}}</h3>
 
-    <task-list :tasks="t"></task-list>
+    <ul>
+      <task v-for="task in t"
+            :key="task.id"
+            v-text="task.text"></task>
+    </ul>
 
     <input type="text" v-model="inp_data">
     <button @click="addTask">Add a card...</button>
@@ -10,11 +14,11 @@
 </template>
 
 <script>
-  import TaskList from './TaskList.vue'
+  import Task from './Task.vue'
 
   export default {
     props: ['cat', 'tasks', 'name'],
-    components: {TaskList},
+    components: {Task},
     data() {
       return {
         inp_data: 'dupa',
@@ -38,5 +42,9 @@
   #cat {
     background-color: #E2E4E6;
     width: 300px;
+  }
+
+  ul {
+    list-style: none;
   }
 </style>
